@@ -1,2 +1,16 @@
 class ShelvesController < ApplicationController
-end
+    def index
+        #binding.pry
+        @shelves = Shelf.all 
+        render json: @shelves
+      end
+    
+      def show 
+       @shelf = Shelf.find(params[:id])
+       render json: @shelf
+      end
+    
+      def destroy 
+        #binding.pry
+      end
+    end
