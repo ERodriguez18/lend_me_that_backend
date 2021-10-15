@@ -5,9 +5,9 @@ Rails.application.routes.draw do
     resources :items 
 
     resources :users do 
-      resources :shelves do 
-        resources :items
-      end
+      resources :shelves
+      resources :items
+      resources :cart_items
     end
 
     resources :carts  do 

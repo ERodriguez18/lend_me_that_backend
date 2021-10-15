@@ -1,8 +1,14 @@
 class Api::ItemsController < ApplicationController
     def index
-      if params[:shelf_id]
+      
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+        @items = @user.items
+        render json: @items
+      elsif params[:shelf_id]
         @shelf = Shelf.find(params[:shelf_id])
-        render json: @shelf.items
+        @items = @shelf.items
+        render json: @items
       elsif params[:cart_id]
         @cart = Cart.find(params[:cart_id])
         #binding.pry
@@ -16,7 +22,6 @@ class Api::ItemsController < ApplicationController
     end
   
     def create
-      # renter_id = User.find(1)
       binding.pry
       if params[:cart_id]
         @item = Item.find(params[:item][:item][:id])
